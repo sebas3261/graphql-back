@@ -1,36 +1,17 @@
-# Etapa 1: Compilación de TypeScript
-FROM node:22-alpine AS builder
-
+# Etapa de build
+FROM node:20-alpine AS build
 WORKDIR /app
-
-# Copiar archivos necesarios
 COPY package*.json ./
-COPY tsconfig.json ./
-COPY src ./src
-
-# Instalar dependencias (incluyendo dev)
 RUN npm install
-
-# Compilar el código TypeScript a JavaScript
+COPY . .
 RUN npm run build
 
-# Etapa 2: Imagen final (solo código compilado)
-FROM node:22-alpine
-
+# Etapa final
+FROM node:20-alpine
 WORKDIR /app
+COPY --from=build /app ./
 
-# Copiar dependencias y código compilado
-COPY package*.json ./
-RUN npm install --omit=dev
-
-COPY --from=builder /app/dist ./dist
-
-# Variables de entorno
-ENV NODE_ENV=production
-ENV PORT=4000
-
-# Puerto expuesto
+# Render inyecta automáticamente la variable PORT, no la fijes a mano
 EXPOSE 4000
 
-# Comando de arranque
 CMD ["node", "dist/infrastructure/graphql/server.js"]
