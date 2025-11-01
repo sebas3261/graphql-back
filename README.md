@@ -1,11 +1,11 @@
-# 🧠 GraphQL Backend — Sebastian Sanchez, Santiago Soler, Nicholas Triana
+# GraphQL Backend — Sebastian Sanchez, Santiago Soler, Nicholas Triana
 
 Backend desarrollado con **Node.js**, **TypeScript**, **Express** y **Apollo Server (GraphQL)**.  
 Este servidor expone queries para gestionar estudiantes y obtener imágenes de gatos de forma dinámica.
 
 ---
 
-## 🚀 Tecnologías principales
+## Tecnologías principales
 
 | Tecnología | Descripción |
 |-------------|--------------|
@@ -19,7 +19,7 @@ Este servidor expone queries para gestionar estudiantes y obtener imágenes de g
 
 ---
 
-## 📚 Schema GraphQL
+## Schema GraphQL
 
 ```graphql
 type Query {
