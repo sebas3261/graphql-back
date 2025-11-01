@@ -7,7 +7,7 @@ export class FirebaseStudentsRepository implements StudentsRepository {
     const db = getFirestore();
     const snap = await db.collection("Students").get(); // respeta mayúscula
 
-    return snap.docs.map((d) => {
+    return snap.docs.map((d: FirebaseFirestore.QueryDocumentSnapshot) => {
       const data = d.data() as any;
       const student: Student = {
         id: d.id,
